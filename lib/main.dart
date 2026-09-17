@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import 'di/injector.dart';
+import 'features/weather/cubit/file_upload_cubit.dart';
 import 'features/weather/cubit/weather_cubit.dart';
 import 'features/weather/screen/weather_screen.dart';
 
@@ -22,8 +23,11 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
     title: 'Weather',
     debugShowCheckedModeBanner: false,
-    home: BlocProvider(
-      create: (_) => getIt<WeatherCubit>(),
+    home: MultiBlocProvider(
+      providers: [
+        BlocProvider<WeatherCubit>(create: (_) => getIt<WeatherCubit>()),
+        BlocProvider<FileUploadCubit>(create: (_) => getIt<FileUploadCubit>()),
+      ],
       child: const WeatherScreen(),
     ),
   );

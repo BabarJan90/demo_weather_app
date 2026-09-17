@@ -11,6 +11,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:data/src/di/data_module.module.dart' as _i568;
+import 'package:demo_weather_app/features/weather/bloc/weather_bloc.dart'
+    as _i1021;
+import 'package:demo_weather_app/features/weather/cubit/file_upload_cubit.dart'
+    as _i969;
 import 'package:demo_weather_app/features/weather/cubit/weather_cubit.dart'
     as _i1061;
 import 'package:domain/di/domain_module.module.dart' as _i729;
@@ -29,6 +33,10 @@ extension GetItInjectableX on _i174.GetIt {
     await _i426.KernelPackageModule().init(gh);
     await _i568.DataPackageModule().init(gh);
     await _i729.DomainPackageModule().init(gh);
+    gh.factory<_i969.FileUploadCubit>(() => _i969.FileUploadCubit());
+    gh.factory<_i1021.WeatherBloc>(
+      () => _i1021.WeatherBloc(gh<_i494.GetCurrentWeatherUseCase>()),
+    );
     gh.factory<_i1061.WeatherCubit>(
       () => _i1061.WeatherCubit(gh<_i494.GetCurrentWeatherUseCase>()),
     );

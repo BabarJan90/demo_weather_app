@@ -7,6 +7,10 @@
 
 import 'dart:async' as _i687;
 
+import 'package:demo_weather_app/features/weather/bloc/weather_bloc.dart'
+    as _i1021;
+import 'package:demo_weather_app/features/weather/cubit/file_upload_cubit.dart'
+    as _i969;
 import 'package:demo_weather_app/features/weather/cubit/weather_cubit.dart'
     as _i1061;
 import 'package:domain/domain.dart' as _i494;
@@ -16,6 +20,9 @@ class DemoWeatherAppPackageModule extends _i526.MicroPackageModule {
 // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
+    gh.factory<_i969.FileUploadCubit>(() => _i969.FileUploadCubit());
+    gh.factory<_i1021.WeatherBloc>(
+        () => _i1021.WeatherBloc(gh<_i494.GetCurrentWeatherUseCase>()));
     gh.factory<_i1061.WeatherCubit>(
         () => _i1061.WeatherCubit(gh<_i494.GetCurrentWeatherUseCase>()));
   }
